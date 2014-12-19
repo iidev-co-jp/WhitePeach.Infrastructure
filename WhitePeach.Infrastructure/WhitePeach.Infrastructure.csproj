@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\WhitePeach.Infrastructure.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,10 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\AnonymousIdenticalTranslator.cs" />
+    <Compile Include="Caching\AnonymousTranslator.cs" />
+    <Compile Include="Caching\AsIsSerializer.cs" />
+    <Compile Include="Caching\CacheCore.cs" />
+    <Compile Include="Caching\Cache.cs" />
+    <Compile Include="Caching\CacheDrive.cs" />
+    <Compile Include="Caching\CacheEntry.cs" />
+    <Compile Include="Caching\ICacheSerializer.cs" />
+    <Compile Include="Caching\ICacheStorage.cs" />
+    <Compile Include="Caching\IExpirePolicy.cs" />
+    <Compile Include="Caching\IIdenticalOptimizedTranslator.cs" />
+    <Compile Include="Caching\IIdenticalSimplexTranslator.cs" />
+    <Compile Include="Caching\IIdenticalVectorizedTranslator.cs" />
+    <Compile Include="Caching\IOptimizedTranslator.cs" />
+    <Compile Include="Caching\ISimplexTranslator.cs" />
+    <Compile Include="Caching\ITranslator.cs" />
+    <Compile Include="Caching\ITranslatorIdentity.cs" />
+    <Compile Include="Caching\IVectorizedTranslator.cs" />
+    <Compile Include="Caching\ICacheDrive.cs" />
+    <Compile Include="Caching\OnMemoryCacheStorage.cs" />
+    <Compile Include="Caching\TimeSpanExpirePolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

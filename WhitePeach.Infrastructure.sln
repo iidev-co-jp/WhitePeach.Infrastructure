@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePeach.Infrastructure", "WhitePeach.Infrastructure\WhitePeach.Infrastructure.csproj", "{D17E49B1-BBCE-40B1-8C6E-547A0CB02A3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitePeach.Infrastructure.Tests", "WhitePeach.Infrastructure.Tests\WhitePeach.Infrastructure.Tests.csproj", "{3EDFDA26-0FFB-4081-B7A2-B72D50066986}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D17E49B1-BBCE-40B1-8C6E-547A0CB02A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D17E49B1-BBCE-40B1-8C6E-547A0CB02A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D17E49B1-BBCE-40B1-8C6E-547A0CB02A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDFDA26-0FFB-4081-B7A2-B72D50066986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDFDA26-0FFB-4081-B7A2-B72D50066986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDFDA26-0FFB-4081-B7A2-B72D50066986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDFDA26-0FFB-4081-B7A2-B72D50066986}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
