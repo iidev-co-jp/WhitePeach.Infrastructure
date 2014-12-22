@@ -13,7 +13,7 @@ namespace WhitePeach.Infrastructure.Caching
     public class AsIsSerializer : ICacheSerializer<object>
     {
         /// <summary>
-        /// キャッシュをオブジェクトに変換します。
+        /// オブジェクトを<see cref="object"/>に変換します。
         /// </summary>
         /// <typeparam name="Q">キャッシュ対象の型</typeparam>
         /// <param name="cacheTarget">変換対象のオブジェクト</param>
@@ -28,7 +28,7 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// キャッシュされたオブジェクトを任意の型に変換します。
+        /// <see cref="object"/>を任意の型に変換します。
         /// </summary>
         /// <typeparam name="Q">キャッシュ対象の型</typeparam>
         /// <param name="cachedObject">キャッシュされたオブジェクト</param>
@@ -36,6 +36,7 @@ namespace WhitePeach.Infrastructure.Caching
         /// 渡されたキャッシュされたオブジェクト
         /// </returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="cachedObject" />がnullです。</exception>
+        /// <exception cref="System.InvalidOperationException">cacheObjectを指定された型に変換できません。</exception>
         public Q Deserialize<Q>(object cachedObject)
         {
             if (cachedObject == null) throw new ArgumentNullException("cachedObject");

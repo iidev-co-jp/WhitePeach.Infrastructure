@@ -16,13 +16,12 @@ namespace WhitePeach.Infrastructure.Caching
         private readonly ConcurrentDictionary<string, Tuple<object, DateTime>> _storage = new ConcurrentDictionary<string, Tuple<object, DateTime>>();
 
         /// <summary>
-        /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" /> を取得します。 
+        /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" /> を取得します。
         /// </summary>
         /// <param name="key"><see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" /> を取得するためのキー</param>
         /// <returns>
         /// キーに一致した <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" />
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public CacheEntry<T> Get(string key)
         {
             return new CacheEntry<T> { Key = key, Value = (T)_storage[key].Item1, UpdateTime = _storage[key].Item2 };

@@ -105,7 +105,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -113,7 +118,7 @@ namespace WhitePeach.Infrastructure.Caching
         /// <returns>
         /// キャッシュされたオブジェクト
         /// </returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="translator"/>がnullです。</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="translator" />がnullです。</exception>
         public T Get<T>(string key, IIdenticalSimplexTranslator<T> translator)
         {
             if (translator == null) throw new ArgumentNullException("translator");
@@ -121,7 +126,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -130,7 +139,7 @@ namespace WhitePeach.Infrastructure.Caching
         /// <returns>
         /// キャッシュされたオブジェクト
         /// </returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="translator"/>がnullです。</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="translator" />がnullです。</exception>
         public T Get<T>(string key, IIdenticalSimplexTranslator<T> translator, ICacheDrive cacheDrive)
         {
             if (translator == null) throw new ArgumentNullException("translator");
@@ -138,7 +147,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -157,7 +170,12 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -173,7 +191,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -190,7 +212,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -209,7 +235,12 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -225,7 +256,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -242,7 +277,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -261,7 +300,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -278,7 +323,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -296,7 +346,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -316,7 +371,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -333,7 +394,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -351,7 +417,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -371,7 +442,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -388,7 +465,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -406,7 +488,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
@@ -426,7 +513,12 @@ namespace WhitePeach.Infrastructure.Caching
         ///////
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -442,7 +534,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -459,7 +555,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -478,7 +578,12 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -494,7 +599,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -511,7 +620,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -530,7 +643,12 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -546,7 +664,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -563,7 +685,11 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -582,7 +708,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -599,7 +731,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -617,7 +754,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -637,7 +779,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -654,7 +802,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -672,7 +825,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -692,7 +850,13 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -709,7 +873,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先を指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するポリシーが<see cref="ExpirePolicyMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -727,7 +896,12 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <see cref="ITranslator{T}" />に対応するドライブが<see cref="CacheDriveMapping" />に定義されている場合はそれを使用し、それ以外の場合は<see cref="DefaultCacheDrive" />が使用されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// 使用される<see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">キャッシュを取得するためのキー</param>
@@ -747,12 +921,16 @@ namespace WhitePeach.Infrastructure.Caching
         //
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先、ポリシーを指定し、キャッシュを取得します
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// <see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">オブジェクトの取得のためのキー</param>
-        /// <param name="translatorIdentity">変換器の判別のためのアイデンティティキー</param>
-        /// <param name="translator">キーをオブジェクトに変換する変換器</param>
+        /// <param name="translatorIdentity">トランスレータの判別のためのアイデンティティキー</param>
+        /// <param name="translator">キーをオブジェクトに変換するトランスレータ</param>
         /// <param name="cacheDrive">キャッシュを保存する先</param>
         /// <param name="expirePolicy">キャッシュが有効か判断を行うポリシー</param>
         /// <returns>
@@ -764,13 +942,17 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先、ポリシーを指定し、キャッシュを取得します
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// <see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// このメソッドでは、<paramref name="translator" />が一括変換に最適化されている場合、パフォーマンスが出にくくなる可能性があります。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="key">オブジェクトの取得のためのキー</param>
-        /// <param name="translatorIdentity">変換器の判別のためのアイデンティティキー</param>
-        /// <param name="translator">キーをオブジェクトに変換する変換器</param>
+        /// <param name="translatorIdentity">トランスレータの判別のためのアイデンティティキー</param>
+        /// <param name="translator">キーをオブジェクトに変換するトランスレータ</param>
         /// <param name="cacheDrive">キャッシュを保存する先</param>
         /// <param name="expirePolicy">キャッシュが有効か判断を行うポリシー</param>
         /// <returns>
@@ -782,13 +964,18 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先、ポリシーを指定し、キャッシュを取得します
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合は新規取得され、キャッシュに追加されます。
+        /// 新規取得、更新対象のエントリ、更新対象でないエントリが同時に存在する場合は、新規取得、更新対象のエントリのみが新規取得されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// <see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// このメソッドでは、<paramref name="translator" />が変換が繰り返し呼ばれるため、<paramref name="translator" />の呼び出しにコストがかかる場合はパフォーマンスが出にくくなる可能性があります。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">オブジェクトの取得のためのキー</param>
-        /// <param name="translatorIdentity">変換器の判別のためのアイデンティティキー</param>
-        /// <param name="translator">キーをオブジェクトに変換する変換器</param>
+        /// <param name="translatorIdentity">トランスレータの判別のためのアイデンティティキー</param>
+        /// <param name="translator">キーをオブジェクトに変換するトランスレータ</param>
         /// <param name="cacheDrive">キャッシュを保存する先</param>
         /// <param name="expirePolicy">キャッシュが有効か判断を行うポリシー</param>
         /// <returns>
@@ -800,12 +987,17 @@ namespace WhitePeach.Infrastructure.Caching
         }
 
         /// <summary>
-        /// 指定したキーからキャッシュを取得します。
+        /// キー、トランスレータ識別子、トランスレータ、保存先、ポリシーを指定し、キャッシュを取得します。
+        /// キーに対応するエントリがキャッシュに存在した場合は<see cref="IExpirePolicy" />でエントリの有効性を検証後、有効であれば既存のエントリが取得されます。有効でない場合は新規取得され、既存のキャッシュエントリがアップデートされます。
+        /// キーに対応するエントリがキャッシュに存在しない場合、新規取得されキャッシュに追加されます。
+        /// 新規取得、更新対象のエントリ、更新対象でないエントリが同時に存在する場合は、新規取得、更新対象のエントリのみが新規取得されます。
+        /// <paramref name="translatorIdentity" />はトランスレータを区別するための識別子として使用されます。同じ機能を持つトランスレータを使用した場合でも、トランスレータ識別子が異なる場合はキャッシュのエントリは異なるものとして扱われます。
+        /// <see cref="ICacheDrive" />や<see cref="IExpirePolicy" />が例外を出した場合は、<paramref name="translator" />から値を取得しそれを返します。
         /// </summary>
         /// <typeparam name="T">キャッシュ対象の型</typeparam>
         /// <param name="keys">オブジェクトの取得のためのキー</param>
-        /// <param name="translatorIdentity">変換器の判別のためのアイデンティティキー</param>
-        /// <param name="translator">キーをオブジェクトに変換する変換器</param>
+        /// <param name="translatorIdentity">トランスレータの判別のためのアイデンティティキー</param>
+        /// <param name="translator">キーをオブジェクトに変換するトランスレータ</param>
         /// <param name="cacheDrive">キャッシュを保存する先</param>
         /// <param name="expirePolicy">キャッシュが有効か判断を行うポリシー</param>
         /// <returns>
@@ -874,7 +1066,7 @@ namespace WhitePeach.Infrastructure.Caching
         /// <returns>トランスレータに対応した有効期限ポリシー</returns>
         private IExpirePolicy GetExpirePolicy<T>(ITranslator<T> translator)
         {
-             return ExpirePolicyMapping.ContainsKey(translator.GetType().FullName) ? ExpirePolicyMapping[translator.GetType().FullName] : DefaultExpirePolicy;
+            return ExpirePolicyMapping.ContainsKey(translator.GetType().FullName) ? ExpirePolicyMapping[translator.GetType().FullName] : DefaultExpirePolicy;
         }
 
         /// <summary>

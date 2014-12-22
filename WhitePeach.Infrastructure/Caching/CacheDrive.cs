@@ -32,13 +32,16 @@ namespace WhitePeach.Infrastructure.Caching
             _cacheStorage = cacheStorage;
         }
 
+
         /// <summary>
-        /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;"/> を取得します。
-        /// キーに一致するものがなかった場合の動作は保証されません。
+        /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" /> を取得します。
         /// </summary>
         /// <typeparam name="V">キャッシュ対象の型</typeparam>
         /// <param name="key">キャッシュを取得するためのキー</param>
-        /// <returns>キーに対応するエントリ</returns>
+        /// <returns>
+        /// キーに対応するエントリ
+        /// </returns>
+        /// <exception cref="KeyNotFoundException">キーに対応するエントリが見つかりません</exception>
         public CacheEntry<V> Get<V>(string key)
         {
             var entry = _cacheStorage.Get(key);

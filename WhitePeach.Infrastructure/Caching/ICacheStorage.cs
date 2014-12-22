@@ -13,7 +13,6 @@ namespace WhitePeach.Infrastructure.Caching
     {
         /// <summary>
         /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;"/> を取得します。
-        /// キーに一致するものがなかった場合の動作は保証されません。
         /// </summary>
         /// <param name="key"> <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;"/> を取得するためのキー</param>
         /// <returns>キーに一致した <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;"/> </returns>

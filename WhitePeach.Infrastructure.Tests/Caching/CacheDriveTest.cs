@@ -29,6 +29,9 @@ namespace WhitePeach.Infrastructure.Tests.Caching
 
         //
 
+        /// <summary>
+        /// キーから <see cref="WhitePeach.Infrastructure.Caching.CacheEntry&lt;T&gt;" /> を取得します。
+        /// </summary>
         [Fact]
         public void Get()
         {

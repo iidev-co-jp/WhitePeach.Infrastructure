@@ -36,7 +36,6 @@ namespace WhitePeach.Infrastructure.Caching
         /// <returns>
         /// キャッシュが有効な場合はtrue。それ以外はfalse。
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public bool Validate<T>(CacheEntry<T> entry)
         {
             return DateTime.Now <= entry.UpdateTime.Add(MaxElapsedTime);
